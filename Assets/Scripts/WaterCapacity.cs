@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WaterCapacity : MonoBehaviour
 {
@@ -6,16 +7,36 @@ public class WaterCapacity : MonoBehaviour
     private float currentWater;
     private float leak = 5f;
     private float fill = 5f;
+    private InputSystem_Actions playerAbsorb;
+    private InputAction absorb;
 
+
+    private void Awake()
+    {
+        playerAbsorb = new InputSystem_Actions();
+    }
+
+    private void OnEnable()
+    {
+        absorb = playerAbsorb.Player.Attack;
+        absorb.Enable();
+    }
+
+    private void OnDisable()
+    {
+        absorb.Disable();
+    }
 
     private void Start()
     {
         currentWater = maxWater;
     }
+
     private void Update()
     {
         LosePlayerWater();
     }
+
     public float GetCurrentWater
     {
         get { return currentWater; }
@@ -42,12 +63,15 @@ public class WaterCapacity : MonoBehaviour
         // Check if we hit an enemy
         if (other.CompareTag("Enemy"))
         {
-            EnemyWater enemyWater = other.GetComponent<EnemyWater>();
-            if (enemyWater != null)
+            if (absorb.IsInProgress())
             {
+                EnemyWater enemyWater = other.GetComponent<EnemyWater>();
+                if (enemyWater != null)
+                {
                     enemyWater.LoseEnemyWater();
 
                     PlayerGainWater();
+                }
             }
         }
     }
