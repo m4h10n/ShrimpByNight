@@ -1,10 +1,4 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.InputSystem.Controls;
-using UnityEngine.Rendering;
-using UnityEngine.Rendering.Universal.Internal;
-using UnityEngine.Splines;
 
 public class Enemy : MonoBehaviour
 {
@@ -88,7 +82,7 @@ public class Enemy : MonoBehaviour
         }
 
 
-        if (EnemyBehavior != GameState.Chase)
+        if (EnemyBehavior == GameState.Wander)
         {
            if (Vector3.Distance(transform.position, player.transform.position) < fieldOfView.GetViewDistance())
             {

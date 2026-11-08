@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class WaypointPatrol : MonoBehaviour
 {
     private Enemy enemy;
     public float moveSpeed = 1.0f;
-    public Transform[] waypoints;
+    public Transform[] waypoints = {};
 
     private Rigidbody2D m_RigidBody;
     int m_CurrentWaypointIndex;
@@ -20,7 +17,10 @@ public class WaypointPatrol : MonoBehaviour
 
     void FixedUpdate ()
     {
+		if (waypoints.Length == 0) return;
         Transform currentWaypoint = waypoints[m_CurrentWaypointIndex];
+		if (currentWaypoint == null) return;
+
         Vector3 currentToTarget = currentWaypoint.position - (Vector3) m_RigidBody.position;
 
         if (enemy.getGameState() == Enemy.GameState.Wander)
