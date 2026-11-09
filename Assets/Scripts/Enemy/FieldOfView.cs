@@ -1,6 +1,5 @@
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
-using UnityEngine.Splines;
+using UnityEngine.UIElements;
 
 public class FieldOfView : MonoBehaviour
 {
@@ -38,12 +37,11 @@ public class FieldOfView : MonoBehaviour
         {
             Vector3 vertex;
             RaycastHit2D raycastHit2D = Physics2D.Raycast(origin, GetVectorFromAngle(angle), viewDistance);
-            if (raycastHit2D.collider == null)
+            if (raycastHit2D.collider == null || raycastHit2D.collider.CompareTag("Player"))
             {
                 // No hit
                 vertex = origin + GetVectorFromAngle(angle) * viewDistance;
-
-            } 
+			}
             else
             {
                 // Hit object
@@ -65,13 +63,9 @@ public class FieldOfView : MonoBehaviour
 
             
         }
-        
-
         mesh.vertices = vertices;
         mesh.uv = uv;
         mesh.triangles = triangles;
-
-        
     }
 
     public static Vector3 GetVectorFromAngle(float angle)

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3516914364012457087}
   - component: {fileID: 8452005859206581658}
   - component: {fileID: 1853919126054562627}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FieldOfView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
+  m_DynamicOccludee: 0
   m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1

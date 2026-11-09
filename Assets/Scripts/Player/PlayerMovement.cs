@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector2 moveInput;
 
+	[SerializeField] private GameObject cameraf;
     [SerializeField] private float speed = 5f;
     private Rigidbody2D rb;
 
@@ -14,11 +14,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 
     private void FixedUpdate()
     {

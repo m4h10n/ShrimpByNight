@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
 
     private GameObject player;
     private Rigidbody2D rb;
-    private float moveSpeed;
+    [SerializeField] private float moveSpeed = 10f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,7 +21,6 @@ public class Enemy : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         EnemyBehavior = GameState.Idle;
         player = GameObject.FindWithTag("Player");
-        moveSpeed = 10f;
 
         fieldOfView = Instantiate(pfFieldOfView, null).GetComponent<FieldOfView>();
     }
@@ -37,9 +36,9 @@ public class Enemy : MonoBehaviour
             if (idleCounter < 0)
             {
                 idleCounter = 5f;
-                aimDir = (new Vector3(UnityEngine.Random.Range(-360,361), UnityEngine.Random.Range(-360,361), 0) - transform.position).normalized; // When enemy cone is too far to the left things break
+                aimDir = (new Vector3(Random.Range(-360,361), Random.Range(-360,361), 0) - transform.position).normalized; // When enemy cone is too far to the left things break
                 fieldOfView.SetAimDirection(aimDir);
-                if (UnityEngine.Random.Range(1,5) == 1)
+                if (Random.Range(1,5) == 1)
                 {
                     EnemyBehavior = GameState.Wander;
                 }
@@ -82,7 +81,7 @@ public class Enemy : MonoBehaviour
         }
 
 
-        if (EnemyBehavior == GameState.Wander)
+        if (EnemyBehavior != GameState.Chase)
         {
            if (Vector3.Distance(transform.position, player.transform.position) < fieldOfView.GetViewDistance())
             {
@@ -99,8 +98,7 @@ public class Enemy : MonoBehaviour
                     } 
                 }
             } 
-        }
-        
+        }        
     }
 
     public GameState getGameState() {

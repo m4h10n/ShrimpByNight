@@ -735,6 +735,10 @@ PrefabInstance:
       propertyPath: 'waypoints.Array.data[2]'
       value: 
       objectReference: {fileID: 1206670784}
+    - target: {fileID: 3926414160769683195, guid: 073b97d801bf1074db3c2229daf29cc8, type: 3}
+      propertyPath: moveSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7074859350184795885, guid: 073b97d801bf1074db3c2229daf29cc8, type: 3}
       propertyPath: m_Name
       value: Enemy (1)
@@ -804,6 +808,10 @@ PrefabInstance:
       propertyPath: 'waypoints.Array.data[2]'
       value: 
       objectReference: {fileID: 1941522549}
+    - target: {fileID: 3926414160769683195, guid: 073b97d801bf1074db3c2229daf29cc8, type: 3}
+      propertyPath: moveSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7074859350184795885, guid: 073b97d801bf1074db3c2229daf29cc8, type: 3}
       propertyPath: m_Name
       value: Enemy (2)
@@ -1042,6 +1050,10 @@ PrefabInstance:
       propertyPath: 'waypoints.Array.data[2]'
       value: 
       objectReference: {fileID: 1206670784}
+    - target: {fileID: 3926414160769683195, guid: 073b97d801bf1074db3c2229daf29cc8, type: 3}
+      propertyPath: moveSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7074859350184795885, guid: 073b97d801bf1074db3c2229daf29cc8, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -1314,6 +1326,10 @@ PrefabInstance:
       propertyPath: 'waypoints.Array.data[2]'
       value: 
       objectReference: {fileID: 75918810}
+    - target: {fileID: 3926414160769683195, guid: 073b97d801bf1074db3c2229daf29cc8, type: 3}
+      propertyPath: moveSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 7074859350184795885, guid: 073b97d801bf1074db3c2229daf29cc8, type: 3}
       propertyPath: m_Name
       value: Enemy (3)
