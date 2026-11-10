@@ -78,19 +78,18 @@ public class WaterCapacity : MonoBehaviour
 
 	public void OnTriggerStay2D(Collider2D other)
 	{
-		// Check if we hit an enemy
-		if (other.CompareTag("Enemy"))
+		// Check if we hit an enemy, if we need water, and if we are absorbing.
+		if (other.CompareTag("Enemy") && absorb.IsInProgress() && currentWater <= 99)
 		{
-			if (absorb.IsInProgress())
+			// Get the enemy's water and drain it.
+			EnemyWater enemyWater = other.GetComponent<EnemyWater>();
+			
+			if (enemyWater != null)
 			{
-				EnemyWater enemyWater = other.GetComponent<EnemyWater>();
-				if (enemyWater != null)
-				{
-					float amount = enemyWater.LoseEnemyWater();
-
-					PlayerGainWater(amount);
-				}
+				float amount = enemyWater.LoseEnemyWater();
+				PlayerGainWater(amount);
 			}
+			
 		}
 	}
 }
