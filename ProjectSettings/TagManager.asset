@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - WaterAura
+  - HydrationUI
   layers:
   - Default
   - TransparentFX

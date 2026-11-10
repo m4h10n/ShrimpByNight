@@ -5,32 +5,31 @@ public class WaterCapacity : MonoBehaviour
 {
 	private float maxWater = 100f;
 	private float currentWater;
-	private float leak = 5f;
-	private float fill = 5f;
+	private float leak = 2f;
 	private InputSystem_Actions playerAbsorb;
 	private InputAction absorb;
 
 	private Component playerWater;
 	private SpriteRenderer waterTexture;
+	private HydrationBar waterBar;
 
 	private void Awake()
 	{
-		playerAbsorb = new InputSystem_Actions();
+		playerAbsorb = new InputSystem_Actions();		
 		playerWater = GameObject.FindWithTag("Player").GetComponent<WaterCapacity>();
 		waterTexture = GameObject.FindWithTag("WaterAura").GetComponent<SpriteRenderer>();
+		waterBar = GameObject.FindWithTag("HydrationUI").GetComponent<HydrationBar>();
 
 	}
 
 	private void OnEnable()
 	{
 		absorb = playerAbsorb.Player.Attack;
-		waterTexture.color = new Color(1,1,1,1);
 		absorb.Enable();
 	}
 
 	private void OnDisable()
 	{
-		waterTexture.color = new Color(0,0,0,0);
 		absorb.Disable();
 	}
 
@@ -42,6 +41,10 @@ public class WaterCapacity : MonoBehaviour
 	private void Update()
 	{
 		LosePlayerWater();
+		
+		if (absorb.IsInProgress()) waterTexture.color = new Color(1,1,1,1);
+		else waterTexture.color = new Color(0,0,0,0);
+		
 	}
 
 	public float GetCurrentWater
@@ -52,6 +55,7 @@ public class WaterCapacity : MonoBehaviour
 	public void LosePlayerWater()
 	{
 		currentWater -= leak * Time.deltaTime;
+		waterBar.SetHydration(currentWater);
 		if (currentWater <= 0)
 		{
 			return;
@@ -59,10 +63,17 @@ public class WaterCapacity : MonoBehaviour
 		//Debug.Log("CurrentWater: " +  currentWater);
 	}
 	
-	public void PlayerGainWater()
+	public void PlayerGainWater(float amount)
 	{
-		currentWater += fill * Time.deltaTime;
-		Debug.Log("CurrentWater: " + currentWater);
+		if (currentWater <= 100f) {	
+		currentWater += amount * Time.deltaTime;
+		waterBar.SetHydration(currentWater);
+		//Debug.Log("CurrentWater: " + currentWater);
+		}
+		else
+		{
+			currentWater = 100f;
+		}
 	}
 
 	public void OnTriggerStay2D(Collider2D other)
@@ -75,9 +86,9 @@ public class WaterCapacity : MonoBehaviour
 				EnemyWater enemyWater = other.GetComponent<EnemyWater>();
 				if (enemyWater != null)
 				{
-					enemyWater.LoseEnemyWater();
+					float amount = enemyWater.LoseEnemyWater();
 
-					PlayerGainWater();
+					PlayerGainWater(amount);
 				}
 			}
 		}

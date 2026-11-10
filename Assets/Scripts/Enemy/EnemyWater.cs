@@ -4,7 +4,7 @@ public class EnemyWater : MonoBehaviour
 {
     private float enemyMax = 30f;
     private float enemyCurrent;
-    private float leak = 10f;
+    private float leak = 8f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -12,20 +12,17 @@ public class EnemyWater : MonoBehaviour
         enemyCurrent = enemyMax;
     }
 
-    // Update is called once per frame
-    void Update()
+    public float LoseEnemyWater()
     {
-        
-    }
-
-    public void LoseEnemyWater()
-    {
+		print(enemyCurrent);
         enemyCurrent -= leak * Time.deltaTime;
         if (enemyCurrent <= 0)
         {
-            return;
+			enemyCurrent = 0;
+            return 0;
         }
-        Debug.Log("EnemyWater: " + enemyCurrent);
+		return leak;
+        //Debug.Log("EnemyWater: " + enemyCurrent);
     }
 
 }
