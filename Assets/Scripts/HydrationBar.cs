@@ -44,4 +44,10 @@ public class HydrationBar : MonoBehaviour
     {
         CurrentHydration += amount;
     }
+
+	public void SetHydration(float value)
+	{
+		CurrentHydration = value;
+		UpdateHydrationBar();
+	}
 }

@@ -10,21 +10,28 @@ public class WaterCapacity : MonoBehaviour
     private InputSystem_Actions playerAbsorb;
     private InputAction absorb;
 
+	private Component playerWater;
+	private SpriteRenderer waterTexture;
 
     private void Awake()
     {
         playerAbsorb = new InputSystem_Actions();
+		playerWater = GameObject.FindWithTag("Player").GetComponent<WaterCapacity>();
+		waterTexture = GameObject.FindWithTag("WaterAura").GetComponent<SpriteRenderer>();
+
     }
 
     private void OnEnable()
     {
         absorb = playerAbsorb.Player.Attack;
+		waterTexture.color = new Color(1,1,1,1);
         absorb.Enable();
     }
 
     private void OnDisable()
     {
-        absorb.Disable();
+        waterTexture.color = new Color(0,0,0,0);
+		absorb.Disable();
     }
 
     private void Start()
@@ -55,7 +62,7 @@ public class WaterCapacity : MonoBehaviour
     public void PlayerGainWater()
     {
         currentWater += fill * Time.deltaTime;
-        //Debug.Log("CurrentWater: " + currentWater);
+        Debug.Log("CurrentWater: " + currentWater);
     }
 
     public void OnTriggerStay2D(Collider2D other)

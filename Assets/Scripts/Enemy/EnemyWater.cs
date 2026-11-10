@@ -4,7 +4,7 @@ public class EnemyWater : MonoBehaviour
 {
     private float enemyMax = 30f;
     private float enemyCurrent;
-    private float leak = 5f;
+    private float leak = 10f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

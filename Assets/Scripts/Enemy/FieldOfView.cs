@@ -37,7 +37,7 @@ public class FieldOfView : MonoBehaviour
         {
             Vector3 vertex;
             RaycastHit2D raycastHit2D = Physics2D.Raycast(origin, GetVectorFromAngle(angle), viewDistance);
-            if (raycastHit2D.collider == null || raycastHit2D.collider.CompareTag("Player"))
+            if (raycastHit2D.collider == null || raycastHit2D.collider.CompareTag("Player") || raycastHit2D.collider.CompareTag("WaterAura"))
             {
                 // No hit
                 vertex = origin + GetVectorFromAngle(angle) * viewDistance;
