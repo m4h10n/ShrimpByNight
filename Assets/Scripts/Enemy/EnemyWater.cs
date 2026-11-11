@@ -14,7 +14,6 @@ public class EnemyWater : MonoBehaviour
 
     public float LoseEnemyWater()
     {
-		print(enemyCurrent);
         enemyCurrent -= leak * Time.deltaTime;
         if (enemyCurrent <= 0)
         {
